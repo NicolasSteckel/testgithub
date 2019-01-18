@@ -1,0 +1,10 @@
+program hworld;
+
+uses crt;
+
+BEGIN
+        clrscreen;
+        Writeln ('Hello World');
+        Readln;
+END.
+

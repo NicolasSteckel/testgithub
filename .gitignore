@@ -1,0 +1,3 @@
+#fichier de config à ignorer.
+*.exe
+*.o
