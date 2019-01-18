@@ -3,7 +3,7 @@ program hworld;
 uses crt;
 
 BEGIN
-        clrscreen;
+        clrscr;
         Writeln ('Hello World');
         Readln;
 END.
