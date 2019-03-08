@@ -1,0 +1,54 @@
+program d_fi;
+{$UNITPATH\SDL2}
+
+uses crt,SDL2,SDL2_image;
+
+var
+   sdlWindow1: PSDL_Window;
+   sdlRenderer: PSDL_Renderer;
+   sdlSurface1: PSDL_Surface;
+   sdlTexture1: PSDL_Texture;
+   sdlRectangle: TSDL_Rect;
+
+
+BEGIN
+
+	//initilisation de l'affichage
+  if SDL_Init(SDL_INIT_VIDEO) < 0 then Halt;
+
+  if SDL_CreateWindowAndRenderer(500, 500, SDL_WINDOW_SHOWN, @sdlWindow1, @sdlRenderer) <> 0
+    then Halt;
+
+
+  SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, 'nearest');
+
+  // cr‚e une texture grƒce … l'image
+  sdlTexture1 := IMG_LoadTexture('assets\helicopter.png');
+  if sdltexture1 = nil then
+    Halt;
+
+  //pr‚pare un rectangle
+  sdlRectangle.x := 0;
+  sdlRectangle.y := 0;
+  sdlRectangle.w := 178;
+  sdlRectangle.h := 116;
+
+
+
+  // afficher la texture
+  SDL_RenderCopy(sdlRenderer, sdlTexture1, nil, @sdlRectangle);
+
+  //  affiche pendant 5 secondes
+  SDL_RenderPresent(sdlRenderer);
+  SDL_Delay(5000);
+
+  // vide la m‚moire
+  SDL_DestroyTexture(sdlTexture1);
+  SDL_FreeSurface(sdlSurface1);
+  SDL_DestroyRenderer(sdlRenderer);
+  SDL_DestroyWindow (sdlWindow1);
+
+  //ferme SDL2
+  SDL_Quit;
+END.
+
